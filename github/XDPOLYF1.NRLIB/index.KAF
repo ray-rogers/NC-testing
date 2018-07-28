@@ -1,0 +1,115 @@
+5635                (|XDistributedPolynomialFunctions1| ALPHABET F)
+|package|
+(((|XDistributedPolynomialFunctions1| |#1| |#2|)
+  (CATEGORY |package|
+   (SIGNATURE |factorizationEquations|
+    ((|List| (|Fraction| (|Polynomial| |#2|)))
+     (|XDistributedPolynomial| (|OrderedVariableList| |#1|) |#2|)))
+   (SIGNATURE |factor|
+    ((|List| (|XDistributedPolynomial| (|OrderedVariableList| |#1|) |#2|))
+     (|XDistributedPolynomial| (|OrderedVariableList| |#1|) |#2|)))
+   (SIGNATURE |mapPoly2XDP|
+    ((|XDistributedPolynomial| (|OrderedVariableList| |#1|) |#2|)
+     (|XDistributedPolynomial| (|OrderedVariableList| |#1|)
+                               (|Fraction| (|Polynomial| |#2|)))))
+   (SIGNATURE |leftPoly|
+    ((|XDistributedPolynomial| (|OrderedVariableList| |#1|)
+                               (|Fraction| (|Polynomial| |#2|)))
+     (|XDistributedPolynomial| (|OrderedVariableList| |#1|) |#2|)))
+   (SIGNATURE |rightPoly|
+    ((|XDistributedPolynomial| (|OrderedVariableList| |#1|)
+                               (|Fraction| (|Polynomial| |#2|)))
+     (|XDistributedPolynomial| (|OrderedVariableList| |#1|) |#2|))))
+  (|List| (|Symbol|)) (|Join| (|IntegralDomain|) (|GcdDomain|)))
+ (T |XDistributedPolynomialFunctions1|))
+(CATEGORY |package|
+ (SIGNATURE |factorizationEquations|
+  ((|List| (|Fraction| (|Polynomial| |#2|)))
+   (|XDistributedPolynomial| (|OrderedVariableList| |#1|) |#2|)))
+ (SIGNATURE |factor|
+  ((|List| (|XDistributedPolynomial| (|OrderedVariableList| |#1|) |#2|))
+   (|XDistributedPolynomial| (|OrderedVariableList| |#1|) |#2|)))
+ (SIGNATURE |mapPoly2XDP|
+  ((|XDistributedPolynomial| (|OrderedVariableList| |#1|) |#2|)
+   (|XDistributedPolynomial| (|OrderedVariableList| |#1|)
+                             (|Fraction| (|Polynomial| |#2|)))))
+ (SIGNATURE |leftPoly|
+  ((|XDistributedPolynomial| (|OrderedVariableList| |#1|)
+                             (|Fraction| (|Polynomial| |#2|)))
+   (|XDistributedPolynomial| (|OrderedVariableList| |#1|) |#2|)))
+ (SIGNATURE |rightPoly|
+  ((|XDistributedPolynomial| (|OrderedVariableList| |#1|)
+                             (|Fraction| (|Polynomial| |#2|)))
+   (|XDistributedPolynomial| (|OrderedVariableList| |#1|) |#2|))))
+"/media/rrogers/Misc-2/Home-data/math/fricas-poly-fact/fricas-code-a/bill-page-sandbox-1/github/xdpolyf1.spad"
+((|rightPoly| (*1 *2 *3)
+  (AND (|isDomain| *3 (|XDistributedPolynomial| (|OrderedVariableList| *4) *5))
+       (|ofType| *4 (|List| (|Symbol|)))
+       (|ofCategory| *5 (|Join| (|IntegralDomain|) (|GcdDomain|)))
+       (|isDomain| *2
+                   (|XDistributedPolynomial| (|OrderedVariableList| *4)
+                                             (|Fraction| (|Polynomial| *5))))
+       (|isDomain| *1 (|XDistributedPolynomialFunctions1| *4 *5))))
+ (|leftPoly| (*1 *2 *3)
+  (AND (|isDomain| *3 (|XDistributedPolynomial| (|OrderedVariableList| *4) *5))
+       (|ofType| *4 (|List| (|Symbol|)))
+       (|ofCategory| *5 (|Join| (|IntegralDomain|) (|GcdDomain|)))
+       (|isDomain| *2
+                   (|XDistributedPolynomial| (|OrderedVariableList| *4)
+                                             (|Fraction| (|Polynomial| *5))))
+       (|isDomain| *1 (|XDistributedPolynomialFunctions1| *4 *5))))
+ (|mapPoly2XDP| (*1 *2 *3)
+  (AND
+   (|isDomain| *3
+               (|XDistributedPolynomial| (|OrderedVariableList| *4)
+                                         (|Fraction| (|Polynomial| *5))))
+   (|ofType| *4 (|List| (|Symbol|)))
+   (|ofCategory| *5 (|Join| (|IntegralDomain|) (|GcdDomain|)))
+   (|isDomain| *2 (|XDistributedPolynomial| (|OrderedVariableList| *4) *5))
+   (|isDomain| *1 (|XDistributedPolynomialFunctions1| *4 *5))))
+ (|factor| (*1 *2 *3)
+  (AND (|isDomain| *3 (|XDistributedPolynomial| (|OrderedVariableList| *4) *5))
+       (|ofType| *4 (|List| (|Symbol|)))
+       (|ofCategory| *5 (|Join| (|IntegralDomain|) (|GcdDomain|)))
+       (|isDomain| *2
+                   (|List|
+                    (|XDistributedPolynomial| (|OrderedVariableList| *4) *5)))
+       (|isDomain| *1 (|XDistributedPolynomialFunctions1| *4 *5))))
+ (|factorizationEquations| (*1 *2 *3)
+  (AND (|isDomain| *3 (|XDistributedPolynomial| (|OrderedVariableList| *4) *5))
+       (|ofType| *4 (|List| (|Symbol|)))
+       (|ofCategory| *5 (|Join| (|IntegralDomain|) (|GcdDomain|)))
+       (|isDomain| *2 (|List| (|Fraction| (|Polynomial| *5))))
+       (|isDomain| *1 (|XDistributedPolynomialFunctions1| *4 *5)))))
+((|rightPoly|
+  (((|XDistributedPolynomial| (|OrderedVariableList| |#1|)
+                              (|Fraction| (|Polynomial| |#2|)))
+    (|XDistributedPolynomial| (|OrderedVariableList| |#1|) |#2|))
+   64))
+ (|mapPoly2XDP|
+  (((|XDistributedPolynomial| (|OrderedVariableList| |#1|) |#2|)
+    (|XDistributedPolynomial| (|OrderedVariableList| |#1|)
+                              (|Fraction| (|Polynomial| |#2|))))
+   31))
+ (|leftPoly|
+  (((|XDistributedPolynomial| (|OrderedVariableList| |#1|)
+                              (|Fraction| (|Polynomial| |#2|)))
+    (|XDistributedPolynomial| (|OrderedVariableList| |#1|) |#2|))
+   63))
+ (|factorizationEquations|
+  (((|List| (|Fraction| (|Polynomial| |#2|)))
+    (|XDistributedPolynomial| (|OrderedVariableList| |#1|) |#2|))
+   68))
+ (|factor|
+  (((|List| (|XDistributedPolynomial| (|OrderedVariableList| |#1|) |#2|))
+    (|XDistributedPolynomial| (|OrderedVariableList| |#1|) |#2|))
+   120)))
+XDPOLYF1
+((|constructor|
+  (NIL
+   "\\indented{1}{Factorization of non-commutative polynomials in the} free associative algebra XDPOLY using an ansatz Idea: Daniel Smertnig,{} January 26,{} 2017 Test: Konrad Schrempf,{} Mit 2018-07-04 10:33 Author: Bill Page,{} July 11,{} 2018")))
+(("documentation" 0 5362) ("ancestors" 0 NIL) ("parents" 0 NIL)
+ ("abbreviation" 0 5353) ("predicates" 0 NIL) ("superDomain" 0 NIL)
+ ("operationAlist" 0 4411) ("modemaps" 0 2308) ("sourceFile" 0 2197)
+ ("constructorCategory" 0 1234) ("constructorModemap" 0 78)
+ ("constructorKind" 0 68) ("constructorForm" 0 20))

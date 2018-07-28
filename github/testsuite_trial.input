@@ -1,0 +1,30 @@
+testsuiteNoClear "Trial  1"
+testcaseNoClear "Sanity 1"
+
+--
+-- Sample cases
+x1:XDP := x
+factorCheck_poly(x1)
+x2:= x*y
+factorCheck_poly(x2)
+factorCheck_poly((x+x*y*x)^2 * (z*y))
+statistics()
+
+--
+--
+testcaseNoClear "Sanity 2"
+--
+x3 := 1 - 1*y*x - x*y + x*y^2*x
+factorCheck_poly(x3)
+x4:XDP := 3*x - 2*x*y*x - x*y*x*y*x
+factorCheck_poly( x4)
+x5:XDP := 9 - 9*x*y - x*y*x*y + x*y*x*y*x*y
+factorCheck_poly( x5)
+x6:XDP := 1 - x*y*z*y*x*z
+factorCheck_poly( x6)
+--f10:=(1-x*y)*(2+y*x)*(3-y*z)*(2-z*y)*(1-x*z)
+--factor f10
+--e10:=factorizationEquations f10; #e10
+-- Statistics --Sanity
+statistics()
+

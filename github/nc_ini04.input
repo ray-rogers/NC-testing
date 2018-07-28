@@ -1,0 +1,18 @@
+--)cl co
+)co xdpolyf1
+
+ALPHABET := ['x, 'y, 'z];
+OVL := OrderedVariableList(ALPHABET)
+OFM := FreeMonoid(OVL)
+--F := Integer
+F  :=Fraction(Integer)
+G := Fraction Polynomial F
+XDP := XDPOLY(OVL, F)
+YDP := XDPOLY(OVL, G)
+NCP ==> NCPOLY(OVL, F)
+x:XDP := 'x::OFM;
+y:XDP := 'y::OFM;
+z:XDP := 'z::OFM;
+OF ==> OutputForm
+
+

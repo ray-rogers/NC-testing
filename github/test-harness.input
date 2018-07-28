@@ -1,0 +1,35 @@
+--
+--
+-- Noncommunative testing
+-- Using Bill Page's process
+--
+)clear all
+--)set break resume
+)expose UnittestCount UnittestAux Unittest
+)set break resume
+)expose UnittestCount UnittestAux Unittest
+)r nc_ini04
+--
+--
+-- Factor check- multiply the supposed factors in list
+-- and compare to the XDP polynomial.
+--
+factorCheck : (XDP,LIST(XDP))-> String
+factorCheck(x , y)  ==
+  m:=1::XDP;
+  for i in y repeat m:=m*(i::XDP) 
+  if test(x = m) then "passed" else "fail"
+
+--
+--
+-- factorCheck to automate factoring
+--factorCheck_poly : (XDP)-> String
+factorCheck_poly(x) ==
+  ff:String :=factorCheck(x,factor x)
+  testEquals(ff,"passed")
+
+--
+--
+
+)r testsuite_trial
+

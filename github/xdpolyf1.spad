@@ -1,0 +1,88 @@
+)abbrev package XDPOLYF1 XDistributedPolynomialFunctions1
+
+XDistributedPolynomialFunctions1(ALPHABET:List Symbol, F:Join(IntegralDomain,GcdDomain)):Exports == Implementation where
+  ++ Factorization of non-commutative polynomials in the
+  ++ free associative algebra XDPOLY using an ansatz
+  ++ Idea: Daniel Smertnig, January 26, 2017
+  ++ Test: Konrad Schrempf, Mit 2018-07-04 10:33
+  ++ Author: Bill Page, July 11, 2018
+  OVL ==> OrderedVariableList ALPHABET
+  OFM ==> FreeMonoid OVL
+  G   ==> Fraction Polynomial F
+  XDP ==> XDistributedPolynomial(OVL, F)
+  YDP ==> XDistributedPolynomial(OVL, G)
+  NNI ==> NonNegativeInteger
+  RF  ==> RationalFunction F
+
+  Exports ==> with
+    factorizationEquations : XDP -> List G
+    factor:XDP -> List XDP
+    mapPoly2XDP:YDP -> XDP
+    leftPoly:XDP -> YDP
+    rightPoly:XDP -> YDP
+
+  Implementation ==> add
+    import ListFunctions2(OFM,List OFM)
+    import ListFunctions3(G,OFM,YDP)
+    import ListFunctions2(G,List Symbol)
+    import ListFunctions2(Equation G,Boolean)
+    import ListFunctions2(Equation G,G)
+    import ListFunctions2(G,Polynomial F)
+    import OutputPackage
+
+    mapPoly(p:XDP):YDP ==
+      if reductum p = 0 then
+        return monomial(leadingCoefficient(p)::Polynomial(F)::G,leadingSupport p)
+      else
+        return mapPoly(reductum p)+monomial(leadingCoefficient(p)::Polynomial(F)::G,leadingSupport p)
+
+    mapPoly2XDP(p:YDP):XDP ==
+      if reductum p = 0 then
+        return monomial(retract(retract(leadingCoefficient(p))$G@Polynomial F)@F,leadingSupport(p))
+      else
+        return mapPoly2XDP(reductum p)+monomial(retract(retract(leadingCoefficient(p))$G@Polynomial F)@F,leadingSupport p)
+
+    last(x:OFM,n:NNI):OFM == if n >= length x then x else last(rest x,n)
+    first(x:OFM,n:NNI):OFM == mirror last(mirror x,n)
+    prefixes(x:OFM):List OFM == [first(x,i) for i in 0..length(x)-1]
+    suffixes(x:OFM):List OFM == [last(x,i) for i in 0..length(x)-1]
+    leftSubwords(x:XDP):List OFM ==
+      members set(concat map(prefixes,support x))$Set(OFM)
+    rightSubwords(x:XDP):List OFM ==
+      members set(concat map(suffixes,support x))$Set(OFM)
+    terms(s:Symbol,w:List OFM):List YDP ==
+      map(monomial,[coerce subscript(s,[outputForm i]) for i in 1..#w],w)
+    leftPoly(x:XDP):YDP ==  reduce(_+,terms('a,leftSubwords(x)))
+    rightPoly(x:XDP):YDP == reduce(_+,terms('b,rightSubwords(x)))
+
+    factorizationEquations(p:XDP) : List G ==
+      coefficients(leftPoly p * rightPoly p - mapPoly p)
+
+    vars(p:YDP):List Symbol ==
+      members set(concat map(x+->concat(variables numer x,variables denom x),
+        coefficients p))$Set(Symbol)
+
+    factor(p:XDP):List XDP ==
+      lp := leftPoly p
+      rp := rightPoly p
+      l := vars lp
+      r := vars rp
+      e := factorizationEquations p
+      s0: List Equation G := []
+      -- look for first solution with one parameter
+      while empty? s0 for i in r repeat
+        --output("try: ",i::G::OutputForm)
+        s := solve(e,concat(l, remove(i,r)))$SystemSolvePackage(F)
+        while empty? s0 for s1 in s repeat
+          v := map(x+->retractIfCan(lhs x)@Union(Symbol,"failed") case Symbol, s1)
+          if #v>0 and reduce(_and$Boolean, v) then s0:=s1
+      --output("s0:",s0::OutputForm)
+      if empty? s0 then return [p]
+      bis := select((x:G):Boolean+->(denominator x = i::G), map(rhs,s0))
+      bi:G := gcd(map(numer, bis))::G
+      ss := equation(i::G,bi)
+      --output("param: ",ss::OutputForm)
+      f := concat [factor mapPoly2XDP map((x:G):G+->eval(eval(x,s0),ss)$RF,lp),
+                   factor mapPoly2XDP map((x:G):G+->eval(eval(x,s0),ss)$RF,rp)]
+      if reduce(_*$XDP,f) ~= p then error "factor failed"
+      return f
