@@ -3,7 +3,7 @@
         ((|p| |XDistributedPolynomial| (|OrderedVariableList| ALPHABET) F)
          ($ |XDistributedPolynomial| (|OrderedVariableList| ALPHABET)
           (|Fraction| (|Polynomial| F))))
-        (SPROG ((#1=#:G417 NIL))
+        (SPROG ((#1=#:G4261 NIL))
                (SEQ
                 (EXIT
                  (COND
@@ -17,7 +17,7 @@
                                       (QREFELT $ 15))
                             (QREFELT $ 17))
                            (SPADCALL |p| (QREFELT $ 19)) (QREFELT $ 21)))
-                    (GO #2=#:G416)))
+                    (GO #2=#:G4260)))
                   ('T
                    (PROGN
                     (LETT #1#
@@ -37,7 +37,7 @@
         ((|p| |XDistributedPolynomial| (|OrderedVariableList| ALPHABET)
           (|Fraction| (|Polynomial| F)))
          ($ |XDistributedPolynomial| (|OrderedVariableList| ALPHABET) F))
-        (SPROG ((#1=#:G420 NIL))
+        (SPROG ((#1=#:G4264 NIL))
                (SEQ
                 (EXIT
                  (COND
@@ -51,7 +51,7 @@
                                       (QREFELT $ 27))
                             (QREFELT $ 28))
                            (SPADCALL |p| (QREFELT $ 29)) (QREFELT $ 30)))
-                    (GO #2=#:G419)))
+                    (GO #2=#:G4263)))
                   ('T
                    (PROGN
                     (LETT #1#
@@ -85,7 +85,7 @@
 (SDEFUN |XDPOLYF1;prefixes|
         ((|x| |FreeMonoid| (|OrderedVariableList| ALPHABET))
          ($ |List| (|FreeMonoid| (|OrderedVariableList| ALPHABET))))
-        (SPROG ((#1=#:G427 NIL) (|i| NIL) (#2=#:G426 NIL))
+        (SPROG ((#1=#:G4271 NIL) (|i| NIL) (#2=#:G4270 NIL))
                (SEQ
                 (PROGN
                  (LETT #2# NIL)
@@ -101,7 +101,7 @@
 (SDEFUN |XDPOLYF1;suffixes|
         ((|x| |FreeMonoid| (|OrderedVariableList| ALPHABET))
          ($ |List| (|FreeMonoid| (|OrderedVariableList| ALPHABET))))
-        (SPROG ((#1=#:G431 NIL) (|i| NIL) (#2=#:G430 NIL))
+        (SPROG ((#1=#:G4275 NIL) (|i| NIL) (#2=#:G4274 NIL))
                (SEQ
                 (PROGN
                  (LETT #2# NIL)
@@ -144,7 +144,7 @@
          ($ |List|
           (|XDistributedPolynomial| (|OrderedVariableList| ALPHABET)
                                     (|Fraction| (|Polynomial| F)))))
-        (SPROG ((#1=#:G463 NIL) (|i| NIL) (#2=#:G462 NIL))
+        (SPROG ((#1=#:G4307 NIL) (|i| NIL) (#2=#:G4306 NIL))
                (SEQ
                 (SPADCALL (ELT $ 21)
                           (PROGN
@@ -216,7 +216,7 @@
          ($ |List|
           (|XDistributedPolynomial| (|OrderedVariableList| ALPHABET) F)))
         (SPROG
-         ((#1=#:G587 NIL)
+         ((#1=#:G4431 NIL)
           (|f|
            (|List|
             (|XDistributedPolynomial| (|OrderedVariableList| ALPHABET) F)))
@@ -224,9 +224,9 @@
           (|bi| (|Fraction| (|Polynomial| F)))
           (|bis| (|List| (|Fraction| (|Polynomial| F))))
           (|s0| (|List| (|Equation| (|Fraction| (|Polynomial| F)))))
-          (|v| (|List| (|Boolean|))) (#2=#:G589 NIL) (|s1| NIL)
+          (|v| (|List| (|Boolean|))) (#2=#:G4433 NIL) (|s1| NIL)
           (|s| (|List| (|List| (|Equation| (|Fraction| (|Polynomial| F))))))
-          (#3=#:G588 NIL) (|i| NIL)
+          (#3=#:G4432 NIL) (|i| NIL)
           (|e| (|List| (|Fraction| (|Polynomial| F))))
           (|r| #4=(|List| (|Symbol|))) (|l| #4#)
           (|rp|
@@ -275,7 +275,7 @@
                             (LETT #2# (CDR #2#)) (GO G190) G191 (EXIT NIL))))
                      (LETT #3# (CDR #3#)) (GO G190) G191 (EXIT NIL))
                 (COND
-                 ((NULL |s0|) (PROGN (LETT #1# (LIST |p|)) (GO #5=#:G586))))
+                 ((NULL |s0|) (PROGN (LETT #1# (LIST |p|)) (GO #5=#:G4430))))
                 (LETT |bis|
                       (SPADCALL
                        (CONS #'|XDPOLYF1;factor;XdpL;14!1| (VECTOR |i| $))
@@ -350,9 +350,9 @@
 
 (DECLAIM (NOTINLINE |XDistributedPolynomialFunctions1;|)) 
 
-(DEFUN |XDistributedPolynomialFunctions1| (&REST #1=#:G590)
+(DEFUN |XDistributedPolynomialFunctions1| (&REST #1=#:G4434)
   (SPROG NIL
-         (PROG (#2=#:G591)
+         (PROG (#2=#:G4435)
            (RETURN
             (COND
              ((LETT #2#

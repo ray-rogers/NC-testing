@@ -18,8 +18,19 @@ factorCheck : (XDP,LIST(XDP))-> String
 factorCheck(x , y)  ==
   m:=1::XDP;
   for i in y repeat m:=m*(i::XDP) 
-  if test(x = m) then "passed" else "fail"
-
+  if test(x = m) then (pf:="passed") else (pf:="fail")
+--
+-- Passing is Failing etc..
+--
+f_factorCheck(x , y)  ==
+  pf:=factorCheck(x,y)
+  testNotEquals(pf,"pass")
+  pf
+--
+xf_factorCheck(x , y)  ==
+  pf:=factorCheck(x,y)
+  xftestEquals(pf,"passed")
+  pf
 --
 --
 -- factorCheck to automate factoring
@@ -27,9 +38,13 @@ factorCheck(x , y)  ==
 factorCheck_poly(x) ==
   ff:String :=factorCheck(x,factor x)
   testEquals(ff,"passed")
-
+--
+-
 --
 --
+--
+--)r testsuite_trial
+)r noncommutation_tests
 
-)r testsuite_trial
+statistics()
 
