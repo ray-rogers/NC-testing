@@ -1,0 +1,20 @@
+testsuiteNoClear "NonC testing"
+testcaseNoClear "NonCommutation testing"
+--
+--
+-- x*y=[x,y] Should Pass
+--
+f_factorCheck(x*y,[x,y])
+f_factorCheck(y*x,[y,x])
+--
+-- x*y=[y,x]  Should fail
+--
+xf_factorCheck(x*y,[y,x])
+xf_factorCheck(y*x,[x,y])
+--
+-- (x+x*y*x)=x*(1+y*x)=(1+x*y)*x These should pass
+--
+f_factorCheck(x+x*y*x,[x,(1+y*x)])
+f_factorCheck(x+x*y*x,[1+x*y,x])
+--
+-- This should fail
