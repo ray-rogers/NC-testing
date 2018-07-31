@@ -3,9 +3,11 @@
 
 ALPHABET := ['x, 'y, 'z];
 OVL := OrderedVariableList(ALPHABET)
+PARAMETERS := ['a,'b,'c, 'd, 'e];
 OFM := FreeMonoid(OVL)
+MP ==> MPOLY(PARAMETERS,Integer)
 --F := Integer
-F  :=Fraction(Integer)
+F  :=Fraction(MP)
 G := Fraction Polynomial F
 XDP := XDPOLY(OVL, F)
 YDP := XDPOLY(OVL, G)
@@ -13,6 +15,11 @@ NCP ==> NCPOLY(OVL, F)
 x:XDP := 'x::OFM;
 y:XDP := 'y::OFM;
 z:XDP := 'z::OFM;
+a := 'a::F;
+b := 'b::F;
+c := 'c::F;
+d := 'd::F;
+e := 'e::F;
 OF ==> OutputForm
 
 

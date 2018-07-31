@@ -21,12 +21,14 @@ factorCheck(x , y)  ==
   if test(x = m) then (pf:="passed") else (pf:="fail")
 --
 -- Passing is Failing etc..
+-- f_factorCheck factorCheck that should pass and register with statistics.
 --
 f_factorCheck(x , y)  ==
   pf:=factorCheck(x,y)
-  testNotEquals(pf,"pass")
+  testEquals(pf,"passed")
   pf
 --
+-- xf_factorCheck is factorCheck that should fail and register with statistics.
 xf_factorCheck(x , y)  ==
   pf:=factorCheck(x,y)
   xftestEquals(pf,"passed")
@@ -34,17 +36,18 @@ xf_factorCheck(x , y)  ==
 --
 --
 -- factorCheck to automate factoring
---factorCheck_poly : (XDP)-> String
 factorCheck_poly(x) ==
-  ff:String :=factorCheck(x,factor x)
+  ff :=factorCheck(x, factor x)
   testEquals(ff,"passed")
+  ff
 --
 -
 --
 --
 --
 --)r testsuite_trial
-)r noncommutation_tests
+--)r noncommutation_tests
+)r Parameter_test.input
 
 statistics()
 

@@ -1,0 +1,60 @@
+testsuiteNoClear "Trial  1"
+testcaseNoClear "Parametric"
+--
+--  11 Total tests going to statistics 
+-- 2 intentional failures
+--
+-- Simple test
+-- First without parameters
+--
+p1_1 :XDP := (1+x*y)*(z+y*x)
+factorCheck_poly(p1_1)
+--
+-- Then with parameters
+--
+p1_1p :XDP := (a+b*x*y)*(c*z+e*y*x)
+factorCheck_poly(p1_1p)
+-- Which seems to work
+--
+-- Make sure it can fail
+--
+p1_1pa :XDP := (a+x*y)*(c*z+e*y*x)
+-- Incorrect factors for p1_1
+p1_1pa_f := factor p1_1pa
+-- Correct factors for p1_1p
+p1_1p_f  := factor p1_1p
+-- 
+-- Now we cross check
+-- Passes
+f_factorCheck(p1_1p,p1_1p_f)
+f_factorCheck(p1_1pa,p1_1pa_f)
+-- Fails
+xf_factorCheck(p1_1pa,p1_1p_f)
+xf_factorCheck(p1_1p,p1_1pa_f)
+--
+--  Harder problems
+--
+p2:=x^2-a^2
+factor p2
+factorCheck_poly(p2)
+p2a:=x^2-a
+factor p2a
+factorCheck_poly(p2a)
+--
+p3:=x^5-a^5
+factor p3
+factorCheck_poly(p3)
+p3a := x^5-a
+factor p3a
+factorCheck_poly(p3a)
+--
+-- More amusingly
+--
+p4:=x^4-a^4
+factor p4
+factorCheck_poly(p4)
+
+
+
+
+

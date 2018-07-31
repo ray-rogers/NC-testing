@@ -26,5 +26,5 @@ factorCheck_poly( x6)
 --factor f10
 --e10:=factorizationEquations f10; #e10
 -- Statistics --Sanity
-statistics()
+--statistics()
 
